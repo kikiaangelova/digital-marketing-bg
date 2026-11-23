@@ -10,15 +10,15 @@
 
 ## 1. Инструментите по модули
 
-Всеки модул има тема с подбрани инструменти в края на урока. Натисни името на темата, за да отидеш директно на нея.
+Пет теми имат отделни уроци в Част IV „Инструменти на практика“, с упражнения стъпка по стъпка, задачи и тест. Модули 11 и 12 имат тема с инструменти в края на урока. Натисни името, за да отидеш директно.
 
-| Модул | Тема в урока | Какво ще намериш |
+| Модул | Урок или тема | Какво ще намериш |
 |:---:|---|---|
-| 02 | [Инструменти за проучване на аудиторията](#/2/urok/instrumenti) | Google Trends, AnswerSocrates, Reddit, Microsoft Clarity, Hotjar |
-| 06 | [Инструменти за имейл маркетинг и CRM](#/6/urok/instrumenti) | Brevo, Beehiiv, Milled, Bonjoro, Manyreach |
-| 07 | [Инструменти за изграждане и оптимизация на сайт](#/7/urok/instrumenti) | Wix, WordPress, Shopify, Cloudflare, плъгини за WordPress, PageSpeed Insights |
-| 08 | [Инструменти за SEO](#/8/urok/instrumenti) | Google Search Console, Ubersuggest, Ahrefs, Moz, разширения за Chrome |
-| 10 | [Инструменти за социални мрежи](#/10/urok/instrumenti) | Later, ManyChat, Meta Ads Library, TikTok Creative Center, SocialBlade |
+| 13 | [Проучване на аудиторията](#/13/urok) | Google Trends, AnswerSocrates, Reddit, Microsoft Clarity, Hotjar |
+| 14 | [Email Marketing и CRM](#/14/urok) | Brevo, Beehiiv, Milled, Bonjoro, Manyreach |
+| 15 | [Изграждане и оптимизация на уебсайтове](#/15/urok) | Wix, WordPress, Shopify, Cloudflare, плъгини за WordPress, PageSpeed Insights |
+| 16 | [SEO](#/16/urok) | Google Search Console, Ubersuggest, Ahrefs, Moz, разширения за Chrome |
+| 17 | [Социални мрежи](#/17/urok) | Later, ManyChat, Meta Ads Library, TikTok Creative Center, SocialBlade, Brand24 |
 | 11 | [Microsoft Clarity и Google Search Console](#/11/urok/instrumenti) | Clarity, Hotjar, Google Search Console |
 | 12 | [Инструменти с изкуствен интелект](#/12/urok/instrumenti) | ChatGPT, Claude, Perplexity, NotebookLM, Make, Kling, Gamma и други |
 

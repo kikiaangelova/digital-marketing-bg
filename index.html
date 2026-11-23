@@ -122,7 +122,8 @@ import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.mi
 const PARTS=[
   {name:"Част I. Основи",color:"var(--p1)",soft:"var(--p1s)",hex:"#0e8a7e"},
   {name:"Част II. Стратегия",color:"var(--p2)",soft:"var(--p2s)",hex:"#4b4fc9"},
-  {name:"Част III. Практика",color:"var(--p3)",soft:"var(--p3s)",hex:"#e2583e"}
+  {name:"Част III. Практика",color:"var(--p3)",soft:"var(--p3s)",hex:"#e2583e"},
+  {name:"Част IV. Инструменти на практика",color:"#8a3fb4",soft:"#f3eafa",hex:"#8a3fb4"}
 ];
 const MODS=[
  ["modul-01-vavedenie","Какво е дигитален маркетинг днес",0],
@@ -136,10 +137,15 @@ const MODS=[
  ["modul-09-platena-reklama","Платена дигитална реклама",2],
  ["modul-10-sotsialni-mrezhi","Социални мрежи и инфлуенсър маркетинг",2],
  ["modul-11-analiz","Измерване, анализ и оптимизация",2],
- ["modul-12-ai","Изкуственият интелект в маркетинга",2]
+ ["modul-12-ai","Изкуственият интелект в маркетинга",2],
+ ["modul-13-prouchvane-na-auditoriyata","Проучване на аудиторията",3],
+ ["modul-14-imeyl-i-crm","Email Marketing и CRM",3],
+ ["modul-15-uebsayt-instrumenti","Изграждане и оптимизация на уебсайтове",3],
+ ["modul-16-seo-instrumenti","SEO",3],
+ ["modul-17-sotsialni-instrumenti","Социални мрежи",3]
 ];
 const pad=i=>String(i+1).padStart(2,"0");
-const TOOLS=[2,6,7,8,10,11,12];
+const TOOLS=[11,12]; const TOOLMOD={2:13,6:14,7:15,8:16,10:17};
 const side=document.getElementById("side"), main=document.getElementById("main");
 const cache={};
 
@@ -210,7 +216,7 @@ async function renderModule(i,kind){
     <div class="tabs">
       ${sh?"":`<a href="#/${i+1}/urok" class="${kind==="urok"?"on":""}">Урок</a>
       <a href="#/${i+1}/zadachi" class="${kind==="zadachi"?"on":""}">Задачи и тест</a>
-      ${TOOLS.includes(i+1)?`<a href="#/${i+1}/urok/instrumenti" class="${kind==="instrumenti"?"on":""}">Инструменти</a>`:""}`}
+      ${TOOLS.includes(i+1)?`<a href="#/${i+1}/urok/instrumenti" class="${kind==="instrumenti"?"on":""}">Инструменти</a>`:""}${TOOLMOD[i+1]?`<a href="#/${TOOLMOD[i+1]}/urok">Инструменти</a>`:""}`}
       <button onclick="window.print()">Печат</button>
     </div>
   </div></header>
@@ -240,14 +246,14 @@ function renderCover(){
   PARTS.forEach((p,pi)=>{
     let cards=""; MODS.forEach(([s,t,mp],i)=>{ if(mp!==pi)return;
       cards+=`<a class="card" style="border-top-color:${p.hex}" href="#/${i+1}/urok"><b>МОДУЛ ${pad(i)}</b><div>${t}</div></a>`;});
-    parts+=`<div class="partcard"><h2><i style="background:${p.hex}">${["I","II","III"][pi]}</i>${p.name.replace(/^Част [IV]+\. /,"")}</h2><div class="cards">${cards}</div></div>`;
+    parts+=`<div class="partcard"><h2><i style="background:${p.hex}">${["I","II","III","IV"][pi]}</i>${p.name.replace(/^Част [IV]+\. /,"")}</h2><div class="cards">${cards}</div></div>`;
   });
   main.innerHTML=`
   <header class="cover"><div class="dots"><span style="width:420px;height:420px;right:-120px;top:-140px;background:#0e8a7e;opacity:.35"></span><span style="width:260px;height:260px;right:200px;bottom:-130px;background:#e2583e;opacity:.35"></span><span style="width:120px;height:120px;right:80px;bottom:60px;background:#f2a531;opacity:.5"></span></div>
   <div class="wrap">
     <div class="kicker">Курс за 10. до 12. клас</div>
     <h1>Дигитален маркетинг: стратегия, изпълнение и практика</h1>
-    <p class="lead">Дванадесет модула с български примери, схеми, практически задачи и тестове. Бюджети в евро, реални платформи, данни от 2026 година.</p>
+    <p class="lead">Седемнадесет модула с български примери, схеми, практически задачи и тестове. Бюджети в евро, реални платформи, данни от 2026 година.</p>
     <div class="by">Кирилка Ангелова</div>
   </div></header>
   <div class="wrap">
