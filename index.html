@@ -153,6 +153,7 @@ function renderSide(cur){
     MODS.forEach(([s,t,mp],i)=>{ if(mp!==pi)return;
       h+=`<a class="m ${cur===i?"on":""}" href="#/${i+1}/urok"><b>${pad(i)}</b><span>${t}</span></a>`;});
   });
+  h+=`<h4 style="color:#f2a531">Ресурси</h4><a class="m ${cur==="shabloni"?"on":""}" href="#/shabloni"><b>★</b><span>Шаблони за попълване</span></a>`;
   side.innerHTML=h;
 }
 async function getMd(path){
@@ -191,25 +192,26 @@ function wrapSections(root){
 function mk(cls,label){const d=document.createElement("div");d.className="box "+cls;d.innerHTML=`<span class="tag">${label}</span>`;return d;}
 
 async function renderModule(i,kind){
-  const [slug,title,p]=MODS[i]; setAccent(p); renderSide(i);
-  const file=kind==="zadachi"?"zadachi-i-test.md":"urok.md";
+  const sh=i==="shabloni";
+  const [slug,title,p]=sh?["shabloni","Шаблони за попълване",1]:MODS[i]; setAccent(p); renderSide(i);
+  const file=sh?"shabloni.md":(kind==="zadachi"?"zadachi-i-test.md":"urok.md");
   main.innerHTML=`<div class="wrap" style="padding-top:60px">Зареждане…</div>`;
   let md; try{ md=await getMd(`${slug}/${file}`);}catch(e){ main.innerHTML=`<div class="wrap" style="padding-top:60px">Файлът не можа да се зареди.</div>`; return; }
   md=md.replace(/^# .*\n/,"");
   const html=marked.parse(md,{gfm:true});
   main.innerHTML=`
   <header class="hero"><div class="wrap">
-    <div class="part">${PARTS[p].name} · Модул ${pad(i)}</div>
-    <div class="num">${pad(i)}</div>
+    <div class="part">${sh?"Ресурси · Проект с шаблони":PARTS[p].name+" · Модул "+pad(i)}</div>
+    <div class="num">${sh?"★":pad(i)}</div>
     <h1>${title}</h1>
     <div class="tabs">
-      <a href="#/${i+1}/urok" class="${kind!=="zadachi"?"on":""}">Урок</a>
-      <a href="#/${i+1}/zadachi" class="${kind==="zadachi"?"on":""}">Задачи и тест</a>
+      ${sh?"":`<a href="#/${i+1}/urok" class="${kind!=="zadachi"?"on":""}">Урок</a>
+      <a href="#/${i+1}/zadachi" class="${kind==="zadachi"?"on":""}">Задачи и тест</a>`}
       <button onclick="window.print()">Печат</button>
     </div>
   </div></header>
   <div class="wrap"><article id="art">${html}</article>
-  <div class="pager">${i>0?`<a href="#/${i}/urok"><small>Предишен модул</small>${MODS[i-1][1]}</a>`:"<span></span>"}${i<MODS.length-1?`<a href="#/${i+2}/urok" style="text-align:right"><small>Следващ модул</small>${MODS[i+1][1]}</a>`:""}</div></div>`;
+  <div class="pager">${sh?"<span></span>":i>0?`<a href="#/${i}/urok"><small>Предишен модул</small>${MODS[i-1][1]}</a>`:"<span></span>"}${!sh&&i<MODS.length-1?`<a href="#/${i+2}/urok" style="text-align:right"><small>Следващ модул</small>${MODS[i+1][1]}</a>`:""}</div></div>`;
   const art=document.getElementById("art");
   art.querySelectorAll("pre code.language-mermaid").forEach(c=>{
     const d=document.createElement("div"); d.className="diagram";
@@ -249,17 +251,36 @@ function renderCover(){
       <div><b>Задачи и тест</b>Казус по реален сценарий и тест от 30 точки.</div>
       <div><b>Печат</b>Всеки урок се разпечатва отделно с бутона „Печат“.</div>
     </div>
-    <div class="parts">${parts}</div>
+    <div class="parts">${parts}<div class="partcard"><h2><i style="background:#f2a531">★</i>Ресурси</h2><div class="cards"><a class="card" style="border-top-color:#f2a531" href="#/shabloni"><b>ПРОЕКТ</b><div>Шаблони за попълване: от проблема до 90-дневния план</div></a></div></div></div>
   </div>`;
   window.scrollTo(0,0);
 }
 function route(){
   side.classList.remove("open");
+  if(location.hash.startsWith("#/shabloni")) return renderModule("shabloni");
   const m=location.hash.match(/^#\/(\d+)\/(urok|zadachi)/);
   if(m){ const i=+m[1]-1; if(MODS[i]) return renderModule(i,m[2]); }
   renderCover();
 }
 window.addEventListener("hashchange",route); route();
+// Сваляне на шаблоните, когато сайтът е отворен като преглед в Claude
+document.addEventListener("click",async e=>{
+  const a=e.target.closest('a[href^="shabloni/"]'); if(!a||!window.claude)return;
+  const m=a.getAttribute("href").match(/^shabloni\/([\w.-]+\.(docx|pdf))$/); if(!m)return;
+  e.preventDefault();
+  try{
+    const dl=await window.claude.use("downloads"); if(!dl)throw {code:"unavailable"};
+    if(!window.SHABLONI_FILES){ await new Promise((ok,no)=>{const s=document.createElement("script");s.src="shabloni/files.js";s.onload=ok;s.onerror=no;document.head.appendChild(s);}); }
+    const b=atob(window.SHABLONI_FILES[m[1]]); const u=new Uint8Array(b.length); for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);
+    await dl.save({filename:m[1],data:u});
+  }catch(err){
+    if(err&&err.code==="declined")return;
+    const t=document.createElement("div"); t.textContent="Файлът не може да се свали в този изглед. Опитай отново след малко.";
+    t.style.cssText="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#171b29;color:#fff;padding:12px 18px;border-radius:10px;z-index:99;font-size:15px";
+    document.body.appendChild(t); setTimeout(()=>t.remove(),4000);
+  }
+});
+
 </script>
 </body>
 </html>

@@ -16,6 +16,18 @@
 
 **Задача 5.** Разпределете бюджета по канали по правилото 70/20/10 и обосновете.
 
+## Шаблони за попълване
+
+Започни със заданието. В него са описани двата варианта: А за съществуваща компания и Б за нова (несъществуваща) компания. Рамката на предизвикателството и 90-дневният план по RACE са сърцето на стратегията.
+
+* **Задание за целия проект:** [Word](shabloni/00_Zadanie_proekt_shabloni.docx) · [PDF](shabloni/00_Zadanie_proekt_shabloni.pdf)
+* **Рамкирай своето дизайн предизвикателство (IDEO.org Design Kit):** [PDF](shabloni/01_Ramka_na_predizvikatelstvoto_DesignKit.pdf)
+* **Дигитален маркетингов план по RACE (Smart Insights):** [PDF](shabloni/04_RACE_90_dneven_plan_SmartInsights.pdf)
+
+Всички шаблони и заданието с двата варианта са на страницата [Шаблони за попълване](#/shabloni).
+
+_Източник: Frame Your Design Challenge, IDEO.org Design Kit, [designkit.org](https://www.designkit.org/methods); RACE Growth System, Digital marketing plan template, Smart Insights, [smartinsights.com](https://www.smartinsights.com/digital-marketing-strategy/race-a-practical-framework-to-improve-your-digital-marketing/). Превод на български: Кирилка Ангелова._
+
 ## Тест
 
 Общо 30 точки.

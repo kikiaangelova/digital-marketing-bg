@@ -12,6 +12,17 @@
 
 **Задача 3.** Препоръчайте модел на продажба с аргументи „за“ и „против“. Посочете кой модел е за кой тип клиент.
 
+## Шаблони за попълване
+
+Оцени дигиталната зрялост на бизнеса и на двама реални конкуренти с шаблона на Smart Insights. Персоната ще ти покаже кои канали са важни за клиента.
+
+* **Сравнителна оценка на дигиталната зрялост (Smart Insights):** [PDF](shabloni/03_Ocenka_na_digitalnata_zrelost_SmartInsights.pdf)
+* **Шаблон и чеклист за персона на купувача (Smart Insights):** [PDF](shabloni/02_Persona_shablon_i_cheklist_SmartInsights.pdf)
+
+Всички шаблони и заданието с двата варианта са на страницата [Шаблони за попълване](#/shabloni).
+
+_Източник: Digital marketing maturity benchmarking templates, Smart Insights, [smartinsights.com](https://www.smartinsights.com/membership/free-resources/); Marketing buyer persona template and checklist, Smart Insights, [smartinsights.com](https://www.smartinsights.com/membership/free-resources/). Превод на български: Кирилка Ангелова._
+
 ## Тест
 
 Общо 30 точки.

@@ -26,6 +26,16 @@ Meta в своя отчет показва 160 поръчки.
 
 **Задача 5.** Направете UTM линк за ноемврийския бюлетин с кампания за Black Friday.
 
+## Шаблони за попълване
+
+Използвай скалата от 1 до 5, за да оцениш как бизнесът измерва, анализира и оптимизира. Най-големите пропуски стават приоритети в 90-дневния план.
+
+* **Сравнителна оценка на дигиталната зрялост (Smart Insights):** [PDF](shabloni/03_Ocenka_na_digitalnata_zrelost_SmartInsights.pdf)
+
+Всички шаблони и заданието с двата варианта са на страницата [Шаблони за попълване](#/shabloni).
+
+_Източник: Digital marketing maturity benchmarking templates, Smart Insights, [smartinsights.com](https://www.smartinsights.com/membership/free-resources/). Превод на български: Кирилка Ангелова._
+
 ## Тест
 
 Общо 30 точки.

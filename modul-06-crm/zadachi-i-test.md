@@ -12,6 +12,16 @@
 
 **Задача 3.** Напишете темите и кратко съдържание на три имейла: изоставена количка, напомняне за нова храна, връщане на клиент.
 
+## Шаблони за попълване
+
+Персоната е основата на всяка CRM стратегия. Попълни чеклиста в 13 точки и провери персоната с мнемониката PERSONA.
+
+* **Шаблон и чеклист за персона на купувача (Smart Insights):** [PDF](shabloni/02_Persona_shablon_i_cheklist_SmartInsights.pdf)
+
+Всички шаблони и заданието с двата варианта са на страницата [Шаблони за попълване](#/shabloni).
+
+_Източник: Marketing buyer persona template and checklist, Smart Insights, [smartinsights.com](https://www.smartinsights.com/membership/free-resources/). Превод на български: Кирилка Ангелова._
+
 ## Тест
 
 Общо 30 точки.
