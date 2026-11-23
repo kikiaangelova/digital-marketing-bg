@@ -55,6 +55,9 @@ article td{padding:11px 14px;border-top:1px solid var(--line);vertical-align:top
 article tr:nth-child(even) td{background:#fcfbf8}
 article code{background:#f0ede6;padding:2px 6px;border-radius:5px;font-size:.88em;word-break:break-all}
 article blockquote{margin:18px 0;padding:14px 18px;background:var(--accentS);border-left:5px solid var(--accent);border-radius:0 10px 10px 0}
+article blockquote.try{background:#fff;border:2px dashed var(--accent);border-radius:14px;padding:20px 20px 10px;position:relative;margin:28px 0 30px;box-shadow:0 2px 10px rgba(23,27,41,.04)}
+article blockquote.try:before{content:"✍ Опитай сам";position:absolute;top:-12px;left:16px;background:var(--accent);color:#fff;font-family:Montserrat;font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:999px}
+article blockquote.try p>strong:first-child{display:none}
 .box{border-radius:16px;padding:6px 26px 18px;margin:30px 0;position:relative;border:2px solid}
 .box>h2,.box>h3{margin-top:22px!important}
 .box .tag{position:absolute;top:-13px;left:20px;font-family:Montserrat;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:999px;color:#fff}
@@ -154,7 +157,7 @@ function renderSide(cur){
 }
 async function getMd(path){
   if(cache[path])return cache[path];
-  const r=await fetch(path+"?v=1"); if(!r.ok)throw new Error(path);
+  const r=await fetch(path+"?v="+Date.now()); if(!r.ok)throw new Error(path);
   return cache[path]=await r.text();
 }
 function wrapSections(root){
@@ -169,6 +172,7 @@ function wrapSections(root){
   root.querySelectorAll("section.s2").forEach(s=>{
     const nodes=[...s.childNodes]; let box=null;
     for(const n of nodes){
+      if(box && n.nodeType===1 && n.tagName==="BLOCKQUOTE" && /^Опитай сам/.test(n.textContent.trim())) box=null;
       if(n.nodeType===1 && n.tagName==="H3"){
         box=null;
         if(/^Пример/.test(n.textContent.trim())){ box=mk("case","Пример от практиката"); s.insertBefore(box,n); box.appendChild(n); continue; }
@@ -214,6 +218,7 @@ async function renderModule(i,kind){
     c.parentElement.replaceWith(d);
   });
   wrapSections(art);
+  art.querySelectorAll("blockquote").forEach(q=>{ if(/^Опитай сам/.test(q.textContent.trim())) q.className="try"; });
   const hex=PARTS[p].hex;
   mermaid.initialize({startOnLoad:false,theme:"base",fontFamily:"PT Sans",themeVariables:{
     primaryColor:"#ffffff",primaryBorderColor:hex,primaryTextColor:"#1f2433",lineColor:hex,
