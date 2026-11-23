@@ -18,7 +18,7 @@
 | 14 | [Email Marketing и CRM](#/14/urok) | Brevo, Beehiiv, Milled, Bonjoro, Manyreach |
 | 15 | [Изграждане и оптимизация на уебсайтове](#/15/urok) | Wix, WordPress, Shopify, Cloudflare, плъгини за WordPress, PageSpeed Insights |
 | 16 | [SEO](#/16/urok) | Google Search Console, Ubersuggest, Ahrefs, Moz, разширения за Chrome |
-| 17 | [Социални мрежи](#/17/urok) | Later, ManyChat, Meta Ads Library, TikTok Creative Center, SocialBlade, Brand24 |
+| 17 | [Социални мрежи](#/17/urok) | Meta Business Suite, ManyChat, Meta Ads Library, TikTok Creative Center, SocialBlade, Brand24 |
 | 11 | [Microsoft Clarity и Google Search Console](#/11/urok/instrumenti) | Clarity, Hotjar, Google Search Console |
 | 12 | [Инструменти с изкуствен интелект](#/12/urok/instrumenti) | ChatGPT, Claude, Perplexity, NotebookLM, Make, Kling, Gamma и други |
 
