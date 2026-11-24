@@ -91,6 +91,10 @@ article blockquote.try p>strong:first-child{display:none}
 .how{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:30px 0}
 .how div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
 .how b{font-family:Montserrat;display:block;margin-bottom:4px}
+.opts{margin:10px 0 24px;max-width:760px}
+.opt{display:flex;gap:10px;align-items:baseline;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 14px;margin:7px 0;line-height:1.45}
+.opt b{font-family:Montserrat;color:var(--accent);min-width:22px;flex:none}
+article p,article li,article td{overflow-wrap:anywhere}
 .burger{display:none}
 @media (max-width:900px){
   .layout{grid-template-columns:1fr}
@@ -101,7 +105,17 @@ article blockquote.try p>strong:first-child{display:none}
   .hero h1{font-size:30px}.hero .num{font-size:56px;right:16px}
   .cover h1{font-size:38px}
   .how{grid-template-columns:1fr}
+  html,body{font-size:17px}
+  .hero{padding:64px 0 30px}
+  .tabs{flex-wrap:wrap}
+  .tabs button{margin-left:0}
+  article table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .box{padding:6px 16px 14px}
+  .opt{padding:10px 12px}
+  .pager{flex-direction:column}
+  .pager a{max-width:100%}
 }
+@media print{ .opt{border:0;padding:2px 0;margin:2px 0} }
 @media print{
   nav.side,.burger,.tabs,.pager{display:none!important}
   .layout{display:block} body{background:#fff;font-size:12pt}
@@ -207,6 +221,11 @@ async function renderModule(i,kind){
   main.innerHTML=`<div class="wrap" style="padding-top:60px">Зареждане…</div>`;
   let md; try{ md=await getMd(`${slug}/${file}`);}catch(e){ main.innerHTML=`<div class="wrap" style="padding-top:60px">Файлът не можа да се зареди.</div>`; return; }
   md=md.replace(/^# .*\n/,"");
+  // Отговорите а) б) в) г) да стоят всеки на свой ред, а не слепени в един абзац
+  md=md.replace(/(?:^[а-е]\) .*(?:\n|$))+/gm,blk=>{
+    const rows=blk.trim().split("\n").map(l=>{const m=l.match(/^([а-е]\))\s+(.*)$/);return `<div class="opt"><b>${m[1]}</b><span>${marked.parseInline(m[2])}</span></div>`;});
+    return `<div class="opts">${rows.join("")}</div>\n\n`;
+  });
   const html=marked.parse(md,{gfm:true});
   main.innerHTML=`
   <header class="hero"><div class="wrap">
