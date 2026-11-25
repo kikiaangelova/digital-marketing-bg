@@ -321,6 +321,11 @@ function makeInteractive(art,key,title,kind){
     p.innerHTML=`<b>Име:</b> <input class="fld" data-l="Име"> &nbsp; <b>Клас:</b> <input class="fld" style="min-width:60px" data-l="Клас"> &nbsp; <b>Дата:</b> <input class="fld" type="date" data-l="Дата">`;
     art.prepend(p); p.querySelectorAll("input").forEach(x=>bind(x,"value"));
   }
+  // „1. ____ 2. ____ 3. ____“ на един ред става списък и празните места оставаха само черти.
+  // Свързваме ги накрая, за да не се разместят вече записаните отговори.
+  art.querySelectorAll("li").forEach(li=>{ if(/_{6,}/.test(li.innerHTML)&&!li.querySelector("input,textarea")){
+    li.innerHTML=li.innerHTML.replace(/_{6,}/g,'<input class="fld" style="width:85%">').replace(/\s(\d+\.)\s/g,"<br>$1 ");
+    li.querySelectorAll("input.fld:not([data-k])").forEach(x=>bind(x,"value")); }});
   // toolbar
   const bar=document.createElement("div"); bar.className="workbar";
   bar.innerHTML=`<span>✎ Пиши направо тук. Записва се на това устройство. Накрая натисни „Предай на учителя“. <b class="saved">Записано ✓</b></span>
