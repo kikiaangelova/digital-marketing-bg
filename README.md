@@ -29,10 +29,10 @@
 | | 11 | [Измерване, анализ и оптимизация](modul-11-analiz/urok.md) |
 | | 12 | [Изкуственият интелект в маркетинга](modul-12-ai/urok.md) |
 | IV. Инструменти на практика | 13 | [Проучване на аудиторията](modul-13-prouchvane-na-auditoriyata/urok.md) |
-| | 14 | [Email Marketing и CRM](modul-14-imeyl-i-crm/urok.md) |
+| | 14 | [Имейл маркетинг и CRM на практика](modul-14-imeyl-i-crm/urok.md) |
 | | 15 | [Изграждане и оптимизация на уебсайтове](modul-15-uebsayt-instrumenti/urok.md) |
-| | 16 | [SEO](modul-16-seo-instrumenti/urok.md) |
-| | 17 | [Социални мрежи](modul-17-sotsialni-instrumenti/urok.md) |
+| | 16 | [SEO на практика: инструменти и одит](modul-16-seo-instrumenti/urok.md) |
+| | 17 | [Социални мрежи на практика: инструменти](modul-17-sotsialni-instrumenti/urok.md) |
 
 ## Шаблони за попълване
 
