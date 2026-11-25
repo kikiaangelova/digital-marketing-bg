@@ -314,6 +314,13 @@ function makeInteractive(art,key,title,kind){
     const set=v=>opts.forEach((o,j)=>o.classList.toggle("sel",j===v));
     if(data[k]!=null) set(data[k]);
     opts.forEach((o,j)=>o.addEventListener("click",()=>{ data[k]=data[k]===j?null:j; set(data[k]); save(key,data); })); g.dataset.k=k; });
+  // Урокът няма ред за име и клас, а без тях предаването спира. Добавяме го най-горе.
+  // Свързваме го последен, за да не се разместят вече записаните отговори на учениците.
+  if(!art.querySelector('input.fld[data-l="Име"]')){
+    const p=document.createElement("p");
+    p.innerHTML=`<b>Име:</b> <input class="fld" data-l="Име"> &nbsp; <b>Клас:</b> <input class="fld" style="min-width:60px" data-l="Клас"> &nbsp; <b>Дата:</b> <input class="fld" type="date" data-l="Дата">`;
+    art.prepend(p); p.querySelectorAll("input").forEach(x=>bind(x,"value"));
+  }
   // toolbar
   const bar=document.createElement("div"); bar.className="workbar";
   bar.innerHTML=`<span>✎ Пиши направо тук. Записва се на това устройство. Накрая натисни „Предай на учителя“. <b class="saved">Записано ✓</b></span>
@@ -329,7 +336,7 @@ const FORM="https://docs.google.com/forms/d/e/1FAIpQLScFBXhAiW89wryW_Nn52T03g4i6
 async function sendToTeacher(art,title,kind,btn){
   const nm=art.querySelector('input.fld[data-l="Име"]'), cl=art.querySelector('input.fld[data-l="Клас"]');
   const name=(nm&&nm.value.trim())||"", klas=(cl&&cl.value.trim())||"";
-  if(!name||!klas){ btn.textContent="Попълни име и клас горе"; (nm&&!name?nm:cl).focus(); setTimeout(()=>btn.textContent="Предай на учителя",3000); return; }
+  if(!name||!klas){ btn.textContent="Попълни име и клас горе"; const f=(nm&&!name)?nm:cl; if(f){ f.focus(); f.scrollIntoView({block:"center"}); } setTimeout(()=>btn.textContent="Предай на учителя",3000); return; }
   if(btn.dataset.ok!=="1"){ btn.dataset.ok="1"; btn.textContent="Натисни пак, за да изпратиш"; setTimeout(()=>{btn.dataset.ok="";btn.textContent="Предай на учителя";},4000); return; }
   btn.dataset.ok=""; btn.disabled=true; btn.textContent="Изпращане…";
   const body=new URLSearchParams({"entry.1079704886":name,"entry.1458651083":klas,"entry.1508682010":"Маркетинг · "+title+" · "+(kind==="zadachi"?"Задачи и тест":"Урок"),"entry.985749297":buildText(art,title,kind)});
