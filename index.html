@@ -194,7 +194,7 @@ function renderSide(cur){
     MODS.forEach(([s,t,mp],i)=>{ if(mp!==pi)return;
       h+=`<a class="m ${cur===i?"on":""}" href="#/${i+1}/urok"><b>${pad(i)}</b><span>${t}</span></a>`;});
   });
-  h+=`<h4 style="color:#f2a531">Ресурси</h4><a class="m ${cur==="shabloni"?"on":""}" href="#/shabloni"><b>★</b><span>Шаблони за попълване</span></a><a class="m ${cur==="instrumenti"?"on":""}" href="#/instrumenti"><b>★</b><span>Инструменти за маркетинг и AI</span></a><a class="m ${cur==="razvitie"?"on":""}" href="#/razvitie"><b>★</b><span>Моят план за развитие</span></a>`;
+  h+=`<h4 style="color:#f2a531">Ресурси</h4><a class="m ${cur==="shabloni"?"on":""}" href="#/shabloni"><b>★</b><span>Шаблони за попълване</span></a><a class="m ${cur==="instrumenti"?"on":""}" href="#/instrumenti"><b>★</b><span>Инструменти за маркетинг и AI</span></a><a class="m ${cur==="klient"?"on":""}" href="#/klient"><b>★</b><span>Клиентът на агенцията</span></a><a class="m ${cur==="razvitie"?"on":""}" href="#/razvitie"><b>★</b><span>Моят план за развитие</span></a>`;
   side.innerHTML=h;
 }
 async function getMd(path){
@@ -222,7 +222,7 @@ function wrapSections(root){
       if(box) box.appendChild(n);
     }
   });
-  const rules=[[/^Цели на урока/,"goals","Цели на урока"],[/^Въпроси за дискусия/,"disc","Да обсъдим"],[/^Ключови термини/,"terms","Речник"],[/^Практическа задача/,"task","Практическа задача"],[/^Източници/,"src","Източници"],[/^Тест$/,"task","Тест"]];
+  const rules=[[/^Цели на урока/,"goals","Цели на урока"],[/^Въпроси за дискусия/,"disc","Да обсъдим"],[/^Ключови термини/,"terms","Речник"],[/^Практическа задача/,"task","Практическа задача"],[/^Поръчка/,"task","Поръчка от клиента"],[/^Източници/,"src","Източници"],[/^Тест$/,"task","Тест"]];
   root.querySelectorAll("section.s2").forEach(s=>{
     const t=s.querySelector("h2").textContent.trim();
     for(const [re,cls,label] of rules){ if(re.test(t)){ s.classList.add("box",cls); s.insertAdjacentHTML("afterbegin",`<span class="tag">${label}</span>`); break; } }
@@ -233,7 +233,7 @@ function wrapSections(root){
 function mk(cls,label){const d=document.createElement("div");d.className="box "+cls;d.innerHTML=`<span class="tag">${label}</span>`;return d;}
 
 async function renderModule(i,kind){
-  const RES={shabloni:["shabloni","Шаблони за попълване",1,"shabloni.md","Проект с шаблони"],instrumenti:["shabloni","Инструменти за маркетинг и AI",2,"instrumenti.md","Инструменти по модули"],razvitie:["shabloni","Моят план за развитие в агенцията",0,"plan-razvitie.md","Интегриран казус",true]};
+  const RES={shabloni:["shabloni","Шаблони за попълване",1,"shabloni.md","Проект с шаблони"],instrumenti:["shabloni","Инструменти за маркетинг и AI",2,"instrumenti.md","Инструменти по модули"],razvitie:["shabloni","Моят план за развитие в агенцията",0,"plan-razvitie.md","Интегриран казус",true],klient:["shabloni","Клиентът на агенцията: DABOV Specialty Coffee",0,"klient.md","Общият клиент"]};
   const sh=typeof i==="string";
   const [slug,title,p]=sh?RES[i]:MODS[i]; setAccent(p); renderSide(i);
   const file=sh?RES[i][3]:(kind==="zadachi"?"zadachi-i-test.md":"urok.md");
@@ -342,7 +342,7 @@ function buildText(art,title,kind){
   art.querySelectorAll("input.fld[data-l]").forEach(x=>L.push(`${x.dataset.l}: ${x.value}`)); L.push("");
   const walk=art.querySelectorAll("h2,h3,p,.opts,textarea.ans,table,input.fld:not([data-l])");
   walk.forEach(el=>{
-    if(el.tagName==="H2"||el.tagName==="H3") L.push("\n== "+(el.closest(".box")&&el.closest(".box").querySelector(".tag")&&el.tagName==="H2"?"":"")+el.textContent.replace(/^(Практическа задача|Изследване|Творческа задача|Речник|Тест)(?=[^\s:])/,"").trim()+" ==");
+    if(el.tagName==="H2"||el.tagName==="H3") L.push("\n== "+(el.closest(".box")&&el.closest(".box").querySelector(".tag")&&el.tagName==="H2"?"":"")+el.textContent.replace(/^(Практическа задача|Поръчка от клиента|Изследване|Творческа задача|Речник|Тест)(?=[^\s:])/,"").trim()+" ==");
     else if(el.tagName==="P"){ const t=el.textContent.trim(); if(/^\d+\.\s*\(/.test(t)) L.push("\n"+t); else if(/^Задача \d/.test(t)||(el.nextElementSibling&&el.nextElementSibling.tagName==="TEXTAREA")) L.push("\n"+(t.length>220?t.slice(0,220)+"…":t)); }
     else if(el.classList.contains("opts")){ const s=el.querySelector(".opt.sel"); L.push("Избран отговор: "+(s?s.querySelector("b").textContent+" "+s.querySelector("span").textContent.trim():"(няма)")); }
     else if(el.tagName==="TEXTAREA"){ L.push(el.value.trim()||"(няма отговор)"); }
@@ -375,10 +375,10 @@ function renderCover(){
   <div class="wrap">
     <div class="how">
       <div><b>Урок</b>Понятия, рамки и схеми, обяснени с примери от българския пазар.</div>
-      <div><b>Задачи и тест</b>Казус по реален сценарий и тест от 30 точки.</div>
+      <div><b>Задачи и тест</b>Поръчка от общия клиент DABOV за агенцията ти и тест от 30 точки.</div>
       <div><b>Печат</b>Всеки урок се разпечатва отделно с бутона „Печат“.</div>
     </div>
-    <div class="parts">${parts}<div class="partcard"><h2><i style="background:#f2a531">★</i>Ресурси</h2><div class="cards"><a class="card" style="border-top-color:#f2a531" href="#/shabloni"><b>ПРОЕКТ</b><div>Шаблони за попълване: от проблема до 90-дневния план</div></a><a class="card" style="border-top-color:#f2a531" href="#/instrumenti"><b>ИНСТРУМЕНТИ</b><div>Инструменти за маркетинг и AI по модули</div></a><a class="card" style="border-top-color:#f2a531" href="#/razvitie"><b>ИНТЕГРИРАН КАЗУС</b><div>Моят план за развитие в агенцията (GROW)</div></a></div></div></div>
+    <div class="parts">${parts}<div class="partcard"><h2><i style="background:#f2a531">★</i>Ресурси</h2><div class="cards"><a class="card" style="border-top-color:#f2a531" href="#/shabloni"><b>ПРОЕКТ</b><div>Шаблони за попълване: от проблема до 90-дневния план</div></a><a class="card" style="border-top-color:#f2a531" href="#/instrumenti"><b>ИНСТРУМЕНТИ</b><div>Инструменти за маркетинг и AI по модули</div></a><a class="card" style="border-top-color:#f2a531" href="#/klient"><b>КЛИЕНТЪТ</b><div>DABOV Specialty Coffee: голямата поръчка за годината</div></a><a class="card" style="border-top-color:#f2a531" href="#/razvitie"><b>ИНТЕГРИРАН КАЗУС</b><div>Моят план за развитие в агенцията (GROW)</div></a></div></div></div>
   </div>`;
   window.scrollTo(0,0);
 }
@@ -387,6 +387,7 @@ function route(){
   if(location.hash.startsWith("#/shabloni")) return renderModule("shabloni");
   if(location.hash.startsWith("#/instrumenti")) return renderModule("instrumenti");
   if(location.hash.startsWith("#/razvitie")) return renderModule("razvitie");
+  if(location.hash.startsWith("#/klient")) return renderModule("klient");
   const m=location.hash.match(/^#\/(\d+)\/(urok|zadachi)(\/instrumenti)?/);
   if(m){ const i=+m[1]-1; if(MODS[i]) return renderModule(i,m[3]?"instrumenti":m[2]); }
   renderCover();
