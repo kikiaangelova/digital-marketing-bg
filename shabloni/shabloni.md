@@ -42,7 +42,7 @@ flowchart LR
 |---|:---:|:---:|
 | **Задание:** двата варианта, ред на работа, критерии за оценка | [свали](shabloni/00_Zadanie_proekt_shabloni.docx) | [свали](shabloni/00_Zadanie_proekt_shabloni.pdf) |
 
-## 4. Петте шаблона
+## 4. Шестте шаблона
 
 Това са оригиналните шаблони на Smart Insights и IDEO.org, преведени на български, със запазен дизайн и съдържание. Шаблони 1, 2 и 4 имат полета, които се попълват направо в PDF (в Chrome, Edge или Adobe Acrobat Reader). Шаблон 3 се разпечатва и се попълва на ръка: оградете нивото във всеки ред с различен цвят за компанията и за конкурентите.
 
@@ -53,6 +53,7 @@ flowchart LR
 | 3 | **Шаблони за сравнителна оценка на дигиталната маркетингова зрялост**, Smart Insights | 02, 11 | разпечатай | [свали](shabloni/03_Ocenka_na_digitalnata_zrelost_SmartInsights.pdf) |
 | 4 | **Шаблон за дигитален маркетингов план по RACE**, Smart Insights | 04 | на компютър | [свали](shabloni/04_RACE_90_dneven_plan_SmartInsights.pdf) |
 | 5 | **Примери за промптове към ChatGPT и наръчник за маркетолози**, Smart Insights | 12 | онлайн таблица | [свали](shabloni/05_ChatGPT_promptove_SmartInsights.pdf) |
+| 6 | **Шаблон за развитие на уменията в дигиталния маркетинг** (модел GROW), Smart Insights. Личен план на всеки член на агенцията: в началото, в средата и в края на годината | 01, 12 | на компютър | [PowerPoint](shabloni/06_Plan_za_razvitie_na_umeniyata_GROW_SmartInsights.pptx) · [PDF](shabloni/06_Plan_za_razvitie_na_umeniyata_GROW_SmartInsights.pdf) |
 
 ## 5. Как се оценява
 
@@ -106,5 +107,6 @@ flowchart LR
 | 3 | Digital marketing maturity benchmarking templates, Dave Chaffey и Amelia Cooper | [Smart Insights](https://www.smartinsights.com/membership/free-resources/) |
 | 4 | RACE Growth System, Digital marketing plan template, Dave Chaffey и Stuart Miller | [Smart Insights](https://www.smartinsights.com/digital-marketing-strategy/race-a-practical-framework-to-improve-your-digital-marketing/) |
 | 5 | ChatGPT prompt examples and cheatsheet for marketers | [Smart Insights](https://www.smartinsights.com/membership/free-resources/) |
+| 6 | Digital marketing skills development workbook template | [Smart Insights](https://www.smartinsights.com/membership/free-resources/) |
 
 Заданието с двата варианта: Кирилка Ангелова, CC BY-NC-SA 4.0.
